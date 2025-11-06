@@ -9,6 +9,7 @@ import Articles from "./pages/Articles";
 import Reviews from "./pages/Reviews";
 import Authors from "./pages/Authors";
 import Create from "./pages/Create";
+import ArticleView from "./pages/ArticleView";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/authors" element={<Authors />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/article/:id" element={<ArticleView />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

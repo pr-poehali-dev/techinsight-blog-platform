@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Icon from '@/components/ui/icon';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -166,51 +167,52 @@ const Index = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {trendingArticles.map((article, index) => (
-            <Card
-              key={article.id}
-              className="group overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer border-muted/50 animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className={`h-2 bg-gradient-to-r ${article.gradient}`} />
-              <div className="p-6 space-y-4">
-                <div className="flex gap-2 flex-wrap">
-                  {article.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <h4 className="text-xl font-bold leading-tight group-hover:text-primary transition-colors">
-                  {article.title}
-                </h4>
-                <p className="text-sm text-muted-foreground line-clamp-2">
-                  {article.excerpt}
-                </p>
-                <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                  <div className="flex items-center gap-2">
-                    <Avatar className="h-8 w-8">
-                      <AvatarFallback className="text-xs gradient-primary">
-                        {article.avatar}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <p className="text-sm font-medium">{article.author}</p>
-                      <p className="text-xs text-muted-foreground">{article.date}</p>
+            <Link key={article.id} to={`/article/${article.id}`}>
+              <Card
+                className="group overflow-hidden hover:scale-[1.02] transition-all duration-300 cursor-pointer border-muted/50 animate-slide-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`h-2 bg-gradient-to-r ${article.gradient}`} />
+                <div className="p-6 space-y-4">
+                  <div className="flex gap-2 flex-wrap">
+                    {article.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                  <h4 className="text-xl font-bold leading-tight group-hover:text-primary transition-colors">
+                    {article.title}
+                  </h4>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {article.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                    <div className="flex items-center gap-2">
+                      <Avatar className="h-8 w-8">
+                        <AvatarFallback className="text-xs gradient-primary">
+                          {article.avatar}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-sm font-medium">{article.author}</p>
+                        <p className="text-xs text-muted-foreground">{article.date}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Icon name="Star" size={14} className="fill-yellow-500 text-yellow-500" />
+                        <span>{article.rating}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Icon name="MessageCircle" size={14} />
+                        <span>{article.comments}</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <Icon name="Star" size={14} className="fill-yellow-500 text-yellow-500" />
-                      <span>{article.rating}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Icon name="MessageCircle" size={14} />
-                      <span>{article.comments}</span>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </Link>
           ))}
         </div>
       </section>
